@@ -1685,6 +1685,8 @@ hr { border: 0; height: 1px; background: var(--line); margin: 2.5rem 0; }
   .article-title { font-size: clamp(28px, 8vw, 40px); }
   .prose { font-size: 16px; line-height: 1.9; }
   .prose pre { font-size: 12px; padding: 16px; }
+  .prose table { display: block; width: 100%; overflow-x: auto; }
+  .prose table th, .prose table td { white-space: nowrap; }
 }
 
 @media (max-width: 420px) {
