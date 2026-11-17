@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>这个博客是怎么写出来的 — zzcym</title>
+<meta name="description" content="没有框架、没有构建、没有 CMS：一份关于这个角落里所有零件的说明书。">
+<meta name="theme-color" content="#070709">
+<meta property="og:type" content="article">
+<meta property="og:title" content="这个博客是怎么写出来的">
+<meta property="og:description" content="没有框架、没有构建、没有 CMS：一份关于这个角落里所有零件的说明书。">
+<!-- 文章元信息：只改这几行，首页列表 / 搜索 / RSS 会自动跟着变 -->
+<meta name="post:title" content="这个博客是怎么写出来的">
+<meta name="post:date" content="2026-11-18">
+<meta name="post:tags" content="站点,指南">
+<meta name="post:excerpt" content="没有框架、没有构建、没有 CMS：一份关于这个角落里所有零件的说明书。">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-post="hello-world">
+
+<a class="skip" href="#main">跳到正文</a>
+<div class="progress" data-progress></div>
+
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="回到首页"><b data-site="name">zzcym</b><i>®</i></a>
+    <nav class="nav-links" aria-label="主导航">
+      <a class="nav-link" href="/writing.html">写作</a>
+      <a class="nav-link" href="/lab.html">实验室</a>
+      <a class="nav-link" href="/about.html">关于</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cmdk-key" type="button" data-open-palette aria-label="搜索与跳转">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.4 10.4 3 3"/></svg>
+        <span>⌘K</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="wrap">
+    <header class="article-head">
+      <div class="article-meta mono">
+        <time datetime="2026-11-18">2026.11.18</time>
+        <span class="sep" aria-hidden="true"></span>
+        <span data-reading>—</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span class="tag">站点</span><span class="tag">指南</span>
+      </div>
+      <h1 class="article-title">这个博客是怎么写出来的</h1>
+      <p class="article-dek">没有框架、没有构建、没有 CMS：一份关于这个角落里所有零件的说明书。</p>
+    </header>
+
+    <div class="article-body">
+      <div class="prose">
+        <p class="lead">这是一份说明书，也是一次自我介绍。没有框架、没有构建、没有 CMS——只有几个 HTML 文件和一份 CSS。</p>
+
+        <h2>为什么还要写博客</h2>
+        <p>2026 年了，写博客这件事本身已经有点像行为艺术。所有内容都在往信息流里挤，每一句话都在等着被划走。但我还是想要一个地方：它不催我，也不需要讨好任何人。</p>
+        <p>一个自己的站点最奢侈的地方在于，它允许一个字待很久。你三个月不更新，它不会把你的权重降下来；你写一篇只有七十个人看得懂的技术笔记，它也不会给你限流。</p>
+        <blockquote><p>一个网站最好的部分，往往是它没有被要求做的那些事。</p></blockquote>
+
+        <h2>整站只有七个零件</h2>
+        <p>没有依赖，没有 <code>node_modules</code>，也不需要理解任何构建工具。整站由这几样东西拼起来：</p>
+
+        <table>
+          <thead><tr><th>零件</th><th>文件</th><th>作用</th></tr></thead>
+          <tbody>
+            <tr><td>首页</td><td><code>index.html</code></td><td>一块会自己转的点阵球</td></tr>
+            <tr><td>列表</td><td><code>writing.html</code></td><td>全部文章，可以按标签筛</td></tr>
+            <tr><td>实验室</td><td><code>lab.html</code></td><td>可以抄走的小特效</td></tr>
+            <tr><td>文章</td><td><code>posts/*.html</code></td><td>每篇一个独立的 HTML</td></tr>
+            <tr><td>样式</td><td><code>assets/css/style.css</code></td><td>全站唯一一份 CSS</td></tr>
+            <tr><td>交互</td><td><code>assets/js/core.js</code></td><td>目录、快捷键、灯箱、搜索</td></tr>
+            <tr><td>索引</td><td><code>posts.json</code></td><td>脚本从每篇的 meta 读出来</td></tr>
+          </tbody>
+        </table>
+
+        <h2>一篇文章就是一个 HTML 文件</h2>
+        <p>想写新的一篇，复制任何一个旧文件，改掉开头这四行字：</p>
+        <pre data-lang="html"><code>&lt;meta name="post:title"   content="深色的手感"&gt;
+        &lt;meta name="post:date"    content="2026-10-24"&gt;
+        &lt;meta name="post:tags"    content="设计,界面"&gt;
+        &lt;meta name="post:excerpt" content="纯黑不是深色模式。"&gt;</code></pre>
+        <p>然后跑一次 <code>npm run build</code>。脚本会把 <code>posts/</code> 里所有文章重新读一遍，生成 <code>posts.json</code> 和 <code>feed.xml</code>。首页的“最近的写作”、列表页的标签筛选、<kbd>⌘</kbd><kbd>K</kbd> 里的搜索结果，全都来自这一个文件。</p>
+        <div class="callout"><span class="ic">i</span><div>如果你把仓库推到 GitHub，那个 Action 会在每次 push 时自动跑同一份脚本，所以这一步也可以忘掉。</div></div>
+
+        <h2>想放动图？直接写 img</h2>
+        <p>这是用 HTML 写东西最大的好处：没有 Markdown 的限制，想放什么就放什么。GIF、<code>&lt;video&gt;</code>、<code>&lt;canvas&gt;</code>、一段内联的 SVG 动画，都可以直接塞进正文。</p>
+        <pre data-lang="html"><code>&lt;figure&gt;
+          &lt;img src="/assets/img/loop.gif" alt="一个会动的图"&gt;
+          &lt;figcaption&gt;动图、截图、SVG 都行&lt;/figcaption&gt;
+        &lt;/figure&gt;</code></pre>
+        <p>图会自动获得一圈发丝边框和一行说明文字，点一下会全屏放大。</p>
+
+        <figure>
+          <img src="/assets/img/loop.gif" alt="一列随波形起伏的点">
+          <figcaption>点一下试试 · 它会全屏打开</figcaption>
+        </figure>
+
+        <h2>那些让人“眼前一亮”的东西</h2>
+        <p>外观之外，我还塞了几个小机关：</p>
+        <ul>
+          <li>任意页面按 <kbd>⌘</kbd> <kbd>K</kbd>（Windows 上是 <kbd>Ctrl</kbd> <kbd>K</kbd>）呼出命令面板，可以搜标题、标签，也可以直接跳页。</li>
+          <li>鼠标划过页面时，会跟着亮一小块——像拿手电筒照。</li>
+          <li>首页右侧那颗球可以点。它会炸开，然后慢慢收回去。</li>
+          <li>文章右边有目录，往下滚的时候它会自己指着当前这一段。</li>
+          <li>链接可以整段分享：右上角的按钮会把当前地址复制下来。</li>
+        </ul>
+
+        <h2>发布</h2>
+        <pre data-lang="bash"><code>git add .
+        git commit -m "新文章：深色的手感"
+        git push</code></pre>
+        <p>GitHub Pages 会在一分钟内把改动推上线。没有部署脚本，没有 CI 的等待，也没有“构建失败”这种情绪。</p>
+
+        <hr>
+
+        <p>就这些。如果你也想开一个，把整站拿走，改掉名字、邮箱和链接，就可以开始写了。</p>
+      </div>
+      <aside class="toc" data-toc aria-label="目录"></aside>
+    </div>
+  </article>
+
+  <div class="wrap">
+    <nav class="pager" data-pager aria-label="上下篇"></nav>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-big">写点<em>东西</em>。</p>
+        <p class="foot-note">这个博客没有评论、没有统计、没有广告。只有一些被认真写下来的字，和一处可以随便逛逛的地方。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>页面</h4>
+          <a href="/writing.html">写作</a>
+          <a href="/lab.html">实验室</a>
+          <a href="/about.html">关于</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <div class="foot-col">
+          <h4>别处</h4>
+          <a href="https://github.com/zzcym" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:" data-email style="display:none">邮箱</a>
+          <a href="/posts/hello-world.html">从这里开始 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">© <span data-year>2026</span> zzcym</span>
+      <span class="mono">手写 HTML · 0 个框架 · GitHub Pages</span>
+      <span class="mono">本地 <b data-clock style="color:var(--muted);font-weight:400">--:--:--</b> CST</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/core.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>写作 — zzcym</title>
+<meta name="description" content="全部文章。关于界面、地图与夜晚的笔记。">
+<meta name="theme-color" content="#070709">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="回到首页"><b data-site="name">zzcym</b><i>®</i></a>
+    <nav class="nav-links" aria-label="主导航">
+      <a class="nav-link" href="/writing.html">写作</a>
+      <a class="nav-link" href="/lab.html">实验室</a>
+      <a class="nav-link" href="/about.html">关于</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cmdk-key" type="button" data-open-palette aria-label="搜索与跳转">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.4 10.4 3 3"/></svg>
+        <span>⌘K</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="wrap">
+      <div class="article-meta mono" style="margin-bottom:26px">
+        <span>档案</span><span class="sep"></span><span>01 — 全部文章</span>
+      </div>
+      <h1 class="page-title">写作</h1>
+      <p class="page-lede">这里放写过的东西。多数关于界面、地图和排版，偶尔跑题。按标签筛一筛，或者直接搜。</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="filters">
+        <div class="chips" data-filters></div>
+        <label class="search-wrap">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.4 10.4 3 3"/></svg>
+          <input class="search" type="search" placeholder="搜索标题或标签" aria-label="搜索文章">
+        </label>
+      </div>
+
+      <div class="post-list" data-archive></div>
+
+      <p class="mono" style="margin-top:32px;color:var(--faint)">
+        也可以订阅 <a href="/feed.xml" style="color:var(--muted);border-bottom:1px solid var(--line-strong)">RSS</a>，这样不用常来。
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-big">写点<em>东西</em>。</p>
+        <p class="foot-note">这个博客没有评论、没有统计、没有广告。只有一些被认真写下来的字，和一处可以随便逛逛的地方。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>页面</h4>
+          <a href="/writing.html">写作</a>
+          <a href="/lab.html">实验室</a>
+          <a href="/about.html">关于</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <div class="foot-col">
+          <h4>别处</h4>
+          <a href="https://github.com/zzcym" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:" data-email style="display:none">邮箱</a>
+          <a href="/posts/hello-world.html">从这里开始 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">© <span data-year>2026</span> zzcym</span>
+      <span class="mono">手写 HTML · 0 个框架 · GitHub Pages</span>
+      <span class="mono">本地 <b data-clock style="color:var(--muted);font-weight:400">--:--:--</b> CST</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/core.js"></script>
+</body>
+</html>

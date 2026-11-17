@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>让静态页面动起来：六个可以抄走的小把戏 — zzcym</title>
+<meta name="description" content="纯 HTML 与 CSS 能做到的事情，比你以为的多得多。">
+<meta name="theme-color" content="#070709">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让静态页面动起来：六个可以抄走的小把戏">
+<meta property="og:description" content="纯 HTML 与 CSS 能做到的事情，比你以为的多得多。">
+<!-- 文章元信息：只改这几行，首页列表 / 搜索 / RSS 会自动跟着变 -->
+<meta name="post:title" content="让静态页面动起来：六个可以抄走的小把戏">
+<meta name="post:date" content="2026-11-12">
+<meta name="post:tags" content="前端,特效">
+<meta name="post:excerpt" content="纯 HTML 与 CSS 能做到的事情，比你以为的多得多。">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-post="html-effects">
+
+<a class="skip" href="#main">跳到正文</a>
+<div class="progress" data-progress></div>
+
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="回到首页"><b data-site="name">zzcym</b><i>®</i></a>
+    <nav class="nav-links" aria-label="主导航">
+      <a class="nav-link" href="/writing.html">写作</a>
+      <a class="nav-link" href="/lab.html">实验室</a>
+      <a class="nav-link" href="/about.html">关于</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cmdk-key" type="button" data-open-palette aria-label="搜索与跳转">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.4 10.4 3 3"/></svg>
+        <span>⌘K</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="wrap">
+    <header class="article-head">
+      <div class="article-meta mono">
+        <time datetime="2026-11-12">2026.11.12</time>
+        <span class="sep" aria-hidden="true"></span>
+        <span data-reading>—</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span class="tag">前端</span><span class="tag">特效</span>
+      </div>
+      <h1 class="article-title">让静态页面动起来：六个可以抄走的小把戏</h1>
+      <p class="article-dek">纯 HTML 与 CSS 能做到的事情，比你以为的多得多。</p>
+    </header>
+
+    <div class="article-body">
+      <div class="prose">
+        <p class="lead">你看到的每一个演示，都是它真正的样子——没有录屏，没有 GIF，只有 HTML 和一点点 JavaScript。</p>
+
+        <p>很多人以为“静态网站”等于“不会动”。其实浏览器在这十年里悄悄变成了一个相当强的动画引擎：<code>clip-path</code> 能裁出任意形状，<code>IntersectionObserver</code> 知道元素什么时候进入视野，canvas 可以把每个像素都当成颜料。</p>
+        <p>下面这几样，全部来自这个站点本身。喜欢哪个就整段拿走。</p>
+
+        <h2>01 / 文字解码</h2>
+        <p>鼠标划过去，文字像被重新解码一样抖一下。核心只有一句话：在每一个字符位置随机换字，越靠前的字符越早停下来。</p>
+        <div class="demo">
+          <div class="demo-label"><b>01</b> hover me</div>
+          <span class="fx-scramble" data-text="THE QUIET PART OF THE WEB">THE QUIET PART OF THE WEB</span>
+        </div>
+        <pre data-lang="js"><code>out += p &gt; (i / len) * 0.85 ? target[i] : GLYPHS[random()];</code></pre>
+
+        <h2>02 / 磁吸按钮</h2>
+        <p>鼠标靠近时，按钮朝光标方向轻轻挪几个像素；离开时回弹。位移只有 8–10px，刚好能被感觉到，又不会让人觉得按钮“跑了”。</p>
+        <div class="demo">
+          <div class="demo-label"><b>02</b> 靠近试试</div>
+          <button class="fx-magnet" type="button">把我吸过去 <span aria-hidden="true">→</span></button>
+        </div>
+        <pre data-lang="js"><code>el.style.transform = `translate(${dx * 10}px, ${dy * 8}px)`;</code></pre>
+
+        <h2>03 / 光标聚光</h2>
+        <p>用一个跟着光标走的径向渐变，把注意力压在鼠标附近。适合放在一整块很静的页面上，让“空”也有内容。</p>
+        <div class="demo fx-spot">
+          <span class="s-t">一道很轻的光</span>
+        </div>
+        <pre data-lang="css"><code>background: radial-gradient(200px 200px at var(--sx) var(--sy),
+                    rgba(255, 90, 54, .16), transparent 70%);</code></pre>
+
+        <h2>04 / 点击爆散</h2>
+        <p>四十六个方形粒子，带一点重力，用 canvas 画。没有粒子库，一共三十行。</p>
+        <div class="demo fx-burst">
+          <span class="b-t">点一下这里</span>
+        </div>
+        <pre data-lang="js"><code>p.vy += 0.12; p.vx *= 0.985;
+        p.x += p.vx; p.y += p.vy;
+        ctx.fillRect(p.x, p.y, p.s, p.s);</code></pre>
+
+        <h2>05 / 倾斜卡片</h2>
+        <p>鼠标在卡片上移动时，它会朝你倾斜一点；卡片里的文字用 <code>translateZ</code> 浮在不同的层上，靠近时会有纵深。</p>
+        <div class="demo" style="display:flex;justify-content:center;padding:44px 20px">
+          <div class="fx-tilt">
+            <div class="t-k">card / 01</div>
+            <div class="t-t">会跟着你转的卡片</div>
+            <div class="t-d">关键是 perspective 要和 rotateX / rotateY 一起给，再加一个 preserve-3d。</div>
+          </div>
+        </div>
+        <pre data-lang="css"><code>transform: perspective(760px) rotateY(12deg) rotateX(-8deg);</code></pre>
+
+        <h2>06 / 渐变动字</h2>
+        <p>把一段渐变塞进文字里，然后让背景慢慢移动。因为 <code>background-clip: text</code>，你能看到的只有字本身。</p>
+        <div class="demo" style="text-align:center;padding:40px 20px">
+          <div class="fx-shimmer">Light moves slowly.</div>
+        </div>
+        <pre data-lang="css"><code>background: linear-gradient(100deg, #4a4640, #f1ece2, #ff5a36, #f1ece2, #4a4640);
+        background-clip: text; color: transparent;
+        animation: shimmer 6s linear infinite;</code></pre>
+
+        <h2>最后一句</h2>
+        <p>这些效果有一个共同点：它们都只发生一次，或者只跟着鼠标走很短的一段。真正让人难受的不是动效太少，而是动效太多——每个元素都在争着说话，页面就变成了噪音。</p>
+        <p>我的原则是：<strong>一屏之内，最多一个主动画的元素。</strong>剩下的，交给留白和一点点时间。</p>
+
+        <hr>
+        <p>完整代码在 <a href="/lab.html">实验室</a> 里，每一段的类名都可以直接搬进任何一篇文章。</p>
+      </div>
+      <aside class="toc" data-toc aria-label="目录"></aside>
+    </div>
+  </article>
+
+  <div class="wrap">
+    <nav class="pager" data-pager aria-label="上下篇"></nav>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-big">写点<em>东西</em>。</p>
+        <p class="foot-note">这个博客没有评论、没有统计、没有广告。只有一些被认真写下来的字，和一处可以随便逛逛的地方。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>页面</h4>
+          <a href="/writing.html">写作</a>
+          <a href="/lab.html">实验室</a>
+          <a href="/about.html">关于</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <div class="foot-col">
+          <h4>别处</h4>
+          <a href="https://github.com/zzcym" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:" data-email style="display:none">邮箱</a>
+          <a href="/posts/hello-world.html">从这里开始 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">© <span data-year>2026</span> zzcym</span>
+      <span class="mono">手写 HTML · 0 个框架 · GitHub Pages</span>
+      <span class="mono">本地 <b data-clock style="color:var(--muted);font-weight:400">--:--:--</b> CST</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/core.js"></script>
+</body>
+</html>

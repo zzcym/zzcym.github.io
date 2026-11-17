@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我把吃过的店钉在了一个地球上 — zzcym</title>
+<meta name="description" content="一个关于吃、走路和坐标的小项目。">
+<meta name="theme-color" content="#070709">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我把吃过的店钉在了一个地球上">
+<meta property="og:description" content="一个关于吃、走路和坐标的小项目。">
+<!-- 文章元信息：只改这几行，首页列表 / 搜索 / RSS 会自动跟着变 -->
+<meta name="post:title" content="我把吃过的店钉在了一个地球上">
+<meta name="post:date" content="2026-11-06">
+<meta name="post:tags" content="项目,地图">
+<meta name="post:excerpt" content="一个关于吃、走路和坐标的小项目。">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-post="eatmap">
+
+<a class="skip" href="#main">跳到正文</a>
+<div class="progress" data-progress></div>
+
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="回到首页"><b data-site="name">zzcym</b><i>®</i></a>
+    <nav class="nav-links" aria-label="主导航">
+      <a class="nav-link" href="/writing.html">写作</a>
+      <a class="nav-link" href="/lab.html">实验室</a>
+      <a class="nav-link" href="/about.html">关于</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cmdk-key" type="button" data-open-palette aria-label="搜索与跳转">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.4 10.4 3 3"/></svg>
+        <span>⌘K</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="wrap">
+    <header class="article-head">
+      <div class="article-meta mono">
+        <time datetime="2026-11-06">2026.11.06</time>
+        <span class="sep" aria-hidden="true"></span>
+        <span data-reading>—</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span class="tag">项目</span><span class="tag">地图</span>
+      </div>
+      <h1 class="article-title">我把吃过的店钉在了一个地球上</h1>
+      <p class="article-dek">一个关于吃、走路和坐标的小项目。</p>
+    </header>
+
+    <div class="article-body">
+      <div class="prose">
+        <p class="lead">我做了一个小东西，把吃过的店钉在一个可以旋转的地球上。它不好用，但我每次打开都会笑一下。</p>
+
+        <h2>起因是一个很具体的问题</h2>
+        <p>走进一家店，觉得“这家以前来过”，但想不起来什么时候、和谁、点了什么。点评软件能告诉我评分、人均、排队时长，唯独记不住我的记忆。</p>
+        <p>我想要的不是推荐，是一张只属于我的地图：上面每一个点，都是一次具体的晚上。</p>
+
+        <h2>为什么是地球，不是地图</h2>
+        <p>因为城市是有形状的。放大到街道，一家挨一家的店挤在几百米里；缩小到大陆，你会发现自己这些年其实只活动在很小的几个点上。</p>
+        <p>一张平面地图只能给你其中一种视角。一个可以旋转的球体可以同时给出密度和距离——它更像“我去过哪里”这件事给人的感觉。</p>
+        <blockquote><p>地图不是用来找路的，是用来回忆的。</p></blockquote>
+
+        <h2>它其实是三层</h2>
+        <ul>
+          <li><strong>最底层</strong>：高德的 POI 搜索。给到街道级的名称和坐标，输入“面馆”，它会还给我一条街。</li>
+          <li><strong>中间层</strong>：一次吃饭存成一条记录——坐标、时间、一句话。没有评分，只有“那天为什么去”。</li>
+          <li><strong>最上层</strong>：点阵地球。一个点是一个坐标，去得越多，点越亮。</li>
+        </ul>
+
+        <h2>难的地方</h2>
+        <h3>重名</h3>
+        <p>同一个商场里三层都有同一个招牌，坐标只差几十米。最后我放弃了自动去重，改成每个点带一张小票的照片——对不上的时候，我认得出自己的那张桌子。</p>
+        <h3>性能</h3>
+        <p>两千个点的时候一切都很顺。到两万个点，旋转会开始掉帧。后来改成按视野分块，只画朝向观众的那一面——这件事和这个博客首页那颗球是同一个思路。</p>
+        <h3>手感</h3>
+        <p>手机上旋转地球，一定要比桌面慢。手指滑动的距离和球转过的角度之间，我给了一个 0.6 左右的系数，转起来才像有重量。</p>
+
+        <h2>学到的一件事</h2>
+        <p>做这个项目之前，我以为地图类产品拼的是数据量。做完之后我发现，它拼的是<strong>“然后呢”</strong>——看到这个点之后，我想做什么？</p>
+        <p>所以最终我留下的功能只有一个：点开一个点，看那天写下的那句话。剩下的全部砍掉了。</p>
+
+        <hr>
+        <p>项目在 <a href="https://github.com/zzcym/eatmap" target="_blank" rel="noopener">GitHub</a> 上，还在长。如果你也有一张“吃过的地图”，欢迎交换。</p>
+      </div>
+      <aside class="toc" data-toc aria-label="目录"></aside>
+    </div>
+  </article>
+
+  <div class="wrap">
+    <nav class="pager" data-pager aria-label="上下篇"></nav>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-big">写点<em>东西</em>。</p>
+        <p class="foot-note">这个博客没有评论、没有统计、没有广告。只有一些被认真写下来的字，和一处可以随便逛逛的地方。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>页面</h4>
+          <a href="/writing.html">写作</a>
+          <a href="/lab.html">实验室</a>
+          <a href="/about.html">关于</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <div class="foot-col">
+          <h4>别处</h4>
+          <a href="https://github.com/zzcym" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:" data-email style="display:none">邮箱</a>
+          <a href="/posts/hello-world.html">从这里开始 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">© <span data-year>2026</span> zzcym</span>
+      <span class="mono">手写 HTML · 0 个框架 · GitHub Pages</span>
+      <span class="mono">本地 <b data-clock style="color:var(--muted);font-weight:400">--:--:--</b> CST</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/core.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "generated": "2026-11-17T22:37:46.089Z",
+  "posts": [
+    {
+      "slug": "hello-world",
+      "title": "这个博客是怎么写出来的",
+      "date": "2026-11-18",
+      "tags": [
+        "站点",
+        "指南"
+      ],
+      "excerpt": "没有框架、没有构建、没有 CMS：一份关于这个角落里所有零件的说明书。",
+      "reading": 3,
+      "file": "hello-world.html"
+    },
+    {
+      "slug": "html-effects",
+      "title": "让静态页面动起来：六个可以抄走的小把戏",
+      "date": "2026-11-12",
+      "tags": [
+        "前端",
+        "特效"
+      ],
+      "excerpt": "纯 HTML 与 CSS 能做到的事情，比你以为的多得多。",
+      "reading": 3,
+      "file": "html-effects.html"
+    },
+    {
+      "slug": "eatmap",
+      "title": "我把吃过的店钉在了一个地球上",
+      "date": "2026-11-06",
+      "tags": [
+        "项目",
+        "地图"
+      ],
+      "excerpt": "一个关于吃、走路和坐标的小项目。",
+      "reading": 2,
+      "file": "eatmap.html"
+    },
+    {
+      "slug": "dark-ui",
+      "title": "深色的手感",
+      "date": "2026-10-24",
+      "tags": [
+        "设计",
+        "界面"
+      ],
+      "excerpt": "纯黑不是深色模式，深色也不是把颜色反过来。",
+      "reading": 2,
+      "file": "dark-ui.html"
+    }
+  ]
+}

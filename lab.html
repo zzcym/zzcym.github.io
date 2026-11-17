@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>实验室 — zzcym</title>
+<meta name="description" content="一堆可以抄走的前端小特效：解码文字、磁吸、聚光、爆散、倾斜、渐变字。">
+<meta name="theme-color" content="#070709">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="回到首页"><b data-site="name">zzcym</b><i>®</i></a>
+    <nav class="nav-links" aria-label="主导航">
+      <a class="nav-link" href="/writing.html">写作</a>
+      <a class="nav-link" href="/lab.html">实验室</a>
+      <a class="nav-link" href="/about.html">关于</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cmdk-key" type="button" data-open-palette aria-label="搜索与跳转">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.4 10.4 3 3"/></svg>
+        <span>⌘K</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="wrap">
+      <div class="article-meta mono" style="margin-bottom:26px">
+        <span>档案</span><span class="sep"></span><span>03 — 实验室</span>
+      </div>
+      <h1 class="page-title">实验室</h1>
+      <p class="page-lede">一些没有地方安放、但很好玩的小零件。每一个都是活的，代码就写在旁边——喜欢哪个，整段搬进文章就行。</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div style="max-width:820px">
+
+        <div class="lab-item" data-reveal>
+          <h3><span class="n">01</span> 文字解码</h3>
+          <p>随机字符逐位还原成真正的文字。适合放在标题下面，做一次性的开屏。</p>
+          <div class="demo">
+            <div class="demo-label"><b>demo</b> hover / click</div>
+            <span class="fx-scramble" data-text="NOTHING IS STATIC">NOTHING IS STATIC</span>
+          </div>
+          <div class="lab-code">&lt;<b>span class="fx-scramble"</b> data-text="NOTHING IS STATIC"&gt;NOTHING IS STATIC&lt;/span&gt;</div>
+        </div>
+
+        <div class="lab-item" data-reveal>
+          <h3><span class="n">02</span> 磁吸按钮</h3>
+          <p>鼠标靠近时朝光标方向移动几像素。位移要小，小到只是“感觉它在呼吸”。</p>
+          <div class="demo">
+            <div class="demo-label"><b>demo</b> 靠近一点</div>
+            <button class="fx-magnet" type="button">把我吸过去 <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="lab-code">&lt;<b>button class="fx-magnet"</b>&gt;把我吸过去&lt;/button&gt;</div>
+        </div>
+
+        <div class="lab-item" data-reveal>
+          <h3><span class="n">03</span> 光标聚光</h3>
+          <p>一块跟着光标走的柔和光斑。适合放在很静的区块里，让空也有内容。</p>
+          <div class="demo fx-spot">
+            <span class="s-t">一道很轻的光</span>
+          </div>
+          <div class="lab-code">&lt;<b>div class="demo fx-spot"</b>&gt;…&lt;/div&gt;</div>
+        </div>
+
+        <div class="lab-item" data-reveal>
+          <h3><span class="n">04</span> 点击爆散</h3>
+          <p>点一下，四十多颗方形粒子带着重力散开。没有任何库，就是一块 canvas。</p>
+          <div class="demo fx-burst">
+            <span class="b-t">点一下这里</span>
+          </div>
+          <div class="lab-code">&lt;<b>div class="demo fx-burst"</b>&gt;点一下这里&lt;/div&gt;</div>
+        </div>
+
+        <div class="lab-item" data-reveal>
+          <h3><span class="n">05</span> 倾斜卡片</h3>
+          <p>卡片朝光标倾斜，里面的文字用图层高度做出纵深。手机上不触发。</p>
+          <div class="demo" style="display:flex;justify-content:center;padding:44px 20px">
+            <div class="fx-tilt">
+              <div class="t-k">card / 01</div>
+              <div class="t-t">会跟着你转的卡片</div>
+              <div class="t-d">perspective + rotateX / rotateY + preserve-3d，三件套。</div>
+            </div>
+          </div>
+          <div class="lab-code">&lt;<b>div class="fx-tilt"</b>&gt;…&lt;/div&gt;</div>
+        </div>
+
+        <div class="lab-item" data-reveal>
+          <h3><span class="n">06</span> 渐变动字</h3>
+          <p>一段会流动的金属色。用在页脚的大字上，整页会安静地亮一下。</p>
+          <div class="demo" style="text-align:center;padding:40px 20px">
+            <div class="fx-shimmer">Light moves slowly.</div>
+          </div>
+          <div class="lab-code">&lt;<b>div class="fx-shimmer"</b>&gt;Light moves slowly.&lt;/div&gt;</div>
+        </div>
+
+        <div class="lab-item" data-reveal>
+          <h3><span class="n">07</span> 遮罩揭示</h3>
+          <p>图片从上往下像幕布一样拉开。滚动到位置才会开始。</p>
+          <div class="demo">
+            <img class="fx-reveal-img" src="/assets/img/loop.gif" alt="随波形起伏的点" style="width:100%;border:1px solid var(--line)">
+          </div>
+          <div class="lab-code">&lt;<b>img class="fx-reveal-img"</b> src="…" alt="…"&gt;</div>
+        </div>
+
+        <div class="lab-item" data-reveal>
+          <h3><span class="n">08</span> 跑马灯</h3>
+          <p>无限循环的一行小字。悬停会停下来——这是个容易被忽略的礼貌。</p>
+          <div class="demo" style="padding:0;border-left:0;border-right:0">
+            <div class="marquee" style="border:0">
+              <div class="marquee-track">
+                <span>把鼠标放上来 <i>✦</i> 它会停 <i>✦</i> 移开继续 <i>✦</i> 把鼠标放上来 <i>✦</i> 它会停 <i>✦</i> 移开继续 <i>✦</i></span>
+                <span>把鼠标放上来 <i>✦</i> 它会停 <i>✦</i> 移开继续 <i>✦</i> 把鼠标放上来 <i>✦</i> 它会停 <i>✦</i> 移开继续 <i>✦</i></span>
+              </div>
+            </div>
+          </div>
+          <div class="lab-code">&lt;<b>div class="marquee"</b>&gt;&lt;div class="marquee-track"&gt;…&lt;/div&gt;&lt;/div&gt;</div>
+        </div>
+
+      </div>
+
+      <p class="mono" style="margin-top:20px;color:var(--faint);max-width:52ch;line-height:1.9">
+        以上全部来自 /assets/css/style.css 与 /assets/js/core.js，没有第三方依赖。
+        想看它们是怎么写的，可以直接翻<a href="https://github.com/zzcym/zzcym.github.io" target="_blank" rel="noopener" style="color:var(--muted);border-bottom:1px solid var(--line-strong)">源码</a>。
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-big">写点<em>东西</em>。</p>
+        <p class="foot-note">这个博客没有评论、没有统计、没有广告。只有一些被认真写下来的字，和一处可以随便逛逛的地方。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>页面</h4>
+          <a href="/writing.html">写作</a>
+          <a href="/lab.html">实验室</a>
+          <a href="/about.html">关于</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <div class="foot-col">
+          <h4>别处</h4>
+          <a href="https://github.com/zzcym" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:" data-email style="display:none">邮箱</a>
+          <a href="/posts/hello-world.html">从这里开始 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">© <span data-year>2026</span> zzcym</span>
+      <span class="mono">手写 HTML · 0 个框架 · GitHub Pages</span>
+      <span class="mono">本地 <b data-clock style="color:var(--muted);font-weight:400">--:--:--</b> CST</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/core.js"></script>
+</body>
+</html>

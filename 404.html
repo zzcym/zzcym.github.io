@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 — 这里什么都没有 — zzcym</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#070709">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/style.css">
+<style>
+  .nf { min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 100px 20px 60px; }
+  .nf-code {
+    font-family: var(--font-serif);
+    font-size: clamp(120px, 30vw, 320px);
+    line-height: .78;
+    letter-spacing: -.04em;
+    color: var(--cream);
+    position: relative;
+    display: inline-block;
+  }
+  .nf-code::after {
+    content: "404";
+    position: absolute;
+    inset: 0;
+    color: var(--accent);
+    clip-path: inset(42% 0 42% 0);
+    transform: translateX(-3px);
+    animation: glitch 4.6s infinite steps(1);
+    opacity: .85;
+  }
+  @keyframes glitch {
+    0%, 92%, 100% { transform: translateX(-3px); clip-path: inset(42% 0 42% 0); }
+    93% { transform: translateX(6px); clip-path: inset(18% 0 60% 0); }
+    95% { transform: translateX(-8px); clip-path: inset(64% 0 12% 0); }
+    97% { transform: translateX(3px); clip-path: inset(30% 0 44% 0); }
+  }
+  .nf p { color: var(--muted); margin-top: 18px; font-size: 15px; }
+</style>
+</head>
+<body>
+
+<div class="nf">
+  <div>
+    <p class="mono" style="margin-bottom:22px">ERR / 404 — 页面不存在</p>
+    <div class="nf-code">404</div>
+    <p>这一页大概被我自己删掉了。</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px">
+      <a class="btn solid" href="/"><span>回首页</span><span class="arrow">→</span></a>
+      <a class="btn" href="/writing.html"><span>看看文章</span></a>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/core.js"></script>
+</body>
+</html>

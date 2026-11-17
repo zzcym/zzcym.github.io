@@ -1,0 +1,15 @@
+{
+  "name": "zzcym-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "zzcym 的个人博客 —— 手写 HTML，零框架，托管在 GitHub Pages",
+  "type": "module",
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "build": "node tools/build-index.mjs",
+    "new": "node tools/new-post.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zzcym</title>
+    <link>https://zzcym.github.io/</link>
+    <atom:link href="https://zzcym.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>关于界面、地图与夜晚的笔记。手写 HTML，零框架。</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 17 Nov 2026 22:37:46 GMT</lastBuildDate>
+    <item>
+      <title>这个博客是怎么写出来的</title>
+      <link>https://zzcym.github.io/posts/hello-world.html</link>
+      <guid isPermaLink="true">https://zzcym.github.io/posts/hello-world.html</guid>
+      <pubDate>Wed, 18 Nov 2026 01:00:00 GMT</pubDate>
+      <description>没有框架、没有构建、没有 CMS：一份关于这个角落里所有零件的说明书。</description>
+    </item>
+    <item>
+      <title>让静态页面动起来：六个可以抄走的小把戏</title>
+      <link>https://zzcym.github.io/posts/html-effects.html</link>
+      <guid isPermaLink="true">https://zzcym.github.io/posts/html-effects.html</guid>
+      <pubDate>Thu, 12 Nov 2026 01:00:00 GMT</pubDate>
+      <description>纯 HTML 与 CSS 能做到的事情，比你以为的多得多。</description>
+    </item>
+    <item>
+      <title>我把吃过的店钉在了一个地球上</title>
+      <link>https://zzcym.github.io/posts/eatmap.html</link>
+      <guid isPermaLink="true">https://zzcym.github.io/posts/eatmap.html</guid>
+      <pubDate>Fri, 06 Nov 2026 01:00:00 GMT</pubDate>
+      <description>一个关于吃、走路和坐标的小项目。</description>
+    </item>
+    <item>
+      <title>深色的手感</title>
+      <link>https://zzcym.github.io/posts/dark-ui.html</link>
+      <guid isPermaLink="true">https://zzcym.github.io/posts/dark-ui.html</guid>
+      <pubDate>Sat, 24 Oct 2026 01:00:00 GMT</pubDate>
+      <description>纯黑不是深色模式，深色也不是把颜色反过来。</description>
+    </item>
+  </channel>
+</rss>

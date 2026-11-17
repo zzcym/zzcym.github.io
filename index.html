@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>zzcym — 在深色的房间里做一些会发光的东西</title>
+<meta name="description" content="zzcym 的个人博客：关于界面、地图与夜晚的笔记。手写 HTML，零框架。">
+<meta name="theme-color" content="#070709">
+<meta property="og:type" content="website">
+<meta property="og:title" content="zzcym">
+<meta property="og:description" content="关于界面、地图与夜晚的笔记。手写 HTML，零框架。">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="回到首页"><b data-site="name">zzcym</b><i>®</i></a>
+    <nav class="nav-links" aria-label="主导航">
+      <a class="nav-link" href="/writing.html">写作</a>
+      <a class="nav-link" href="/lab.html">实验室</a>
+      <a class="nav-link" href="/about.html">关于</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cmdk-key" type="button" data-open-palette aria-label="搜索与跳转">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.4 10.4 3 3"/></svg>
+        <span>⌘K</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="hero-eyebrow mono">
+            <span class="dot-live" aria-hidden="true"></span>
+            现居 中国 &nbsp;/&nbsp; 正在构建 <a href="https://github.com/zzcym/eatmap" target="_blank" rel="noopener" style="color:var(--cream-2);border-bottom:1px solid var(--line-strong)">eatmap</a>
+          </p>
+
+          <h1 class="hero-name" data-site="name">zzcym</h1>
+
+          <div class="hero-line">
+            <p class="hero-lede">你好。这里是我的公共笔记本——<br class="br-d">关于<strong>界面</strong>、<strong>地图</strong>和<strong>夜晚</strong>的一些观察，<br class="br-d"><span class="accent">偶尔也写点别的。</span></p>
+            <p class="rotator">
+              <span class="tick">▚</span>
+              <span>目前</span>
+              <span class="slot" data-rotator data-words="在调一个地图的配色|在把日程摊成一条时间轴|在读关于城市的书|在给深色界面找一种新材料"></span>
+            </p>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn solid" href="/writing.html" data-magnetic><span>读文章</span><span class="arrow">→</span></a>
+            <a class="btn" href="/about.html" data-magnetic><span>关于我</span></a>
+          </div>
+        </div>
+
+        <!-- 点阵球体：点击可以让它炸开 -->
+        <div class="orb-wrap" aria-hidden="true">
+          <div class="orb-glow"></div>
+          <svg class="orb-ring" viewBox="0 0 400 400">
+            <defs>
+              <path id="orbPath" d="M200,200 m-176,0 a176,176 0 1,1 352,0 a176,176 0 1,1 -352,0"/>
+            </defs>
+            <text textLength="1100" lengthAdjust="spacing">
+              <textPath href="#orbPath" startOffset="0">WRITING · CODE · CITIES · NIGHT · HTML · CANVAS · MAPS · </textPath>
+            </text>
+          </svg>
+          <canvas class="orb" id="orb"></canvas>
+        </div>
+      </div>
+
+      <div class="hero-foot">
+        <span class="scroll-hint mono">
+          <span class="line" aria-hidden="true"></span>
+          往下滚
+        </span>
+        <span class="clock mono">
+          本地 <b data-clock>--:--:--</b> &nbsp; CST
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 跑马灯 ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>手写 HTML <i>✦</i> 零框架 <i>✦</i> 深色模式 <i>✦</i> 偶尔写字 <i>✦</i> 关于界面与城市 <i>✦</i> ZZCYM <i>✦</i> 手写 HTML <i>✦</i> 零框架 <i>✦</i> 深色模式 <i>✦</i> 偶尔写字 <i>✦</i> 关于界面与城市 <i>✦</i> ZZCYM <i>✦</i></span>
+      <span>手写 HTML <i>✦</i> 零框架 <i>✦</i> 深色模式 <i>✦</i> 偶尔写字 <i>✦</i> 关于界面与城市 <i>✦</i> ZZCYM <i>✦</i> 手写 HTML <i>✦</i> 零框架 <i>✦</i> 深色模式 <i>✦</i> 偶尔写字 <i>✦</i> 关于界面与城市 <i>✦</i> ZZCYM <i>✦</i></span>
+    </div>
+  </div>
+
+  <!-- ============ 01 写作 ============ -->
+  <section class="section" id="latest">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec-title"><em>01</em> 最近的写作</h2>
+        <a class="sec-link" href="/writing.html">全部文章
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 9 9 1M3 1h6v6"/></svg>
+        </a>
+      </div>
+
+      <div class="post-list" data-latest></div>
+
+      <p class="mono" style="margin-top:26px;color:var(--faint);letter-spacing:.08em">
+        共 <span data-count>—</span> 篇 · 用 HTML 直接写，想加动图就加 <code style="font-family:var(--font-mono);color:var(--accent-2)">&lt;img&gt;</code>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 02 在做 ============ -->
+  <section class="section" id="making">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec-title"><em>02</em> 在做的东西</h2>
+        <a class="sec-link" href="https://github.com/zzcym" target="_blank" rel="noopener">全部仓库
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 9 9 1M3 1h6v6"/></svg>
+        </a>
+      </div>
+
+      <div class="featured">
+        <a class="fcard" href="https://github.com/zzcym/eatmap" target="_blank" rel="noopener" data-reveal>
+          <div class="fc-top">
+            <span class="mono" style="color:var(--muted);letter-spacing:.2em">eatmap</span>
+            <span class="mono" style="color:var(--faint);font-size:9.5px">01 / 项目</span>
+          </div>
+          <div>
+            <h3>一张会自己长出来的美食地图</h3>
+            <p>个人向的美食与旅行地球仪，接入了高德街道级 POI 搜索。走过的城市会在上面留下痕迹。</p>
+          </div>
+          <div class="fc-foot">
+            <span class="mono" style="color:var(--faint)">JavaScript · 进行中</span>
+            <span class="go" aria-hidden="true">↗</span>
+          </div>
+        </a>
+
+        <a class="fcard" href="https://github.com/zzcym/mobile-agenda" target="_blank" rel="noopener" data-reveal style="--d:1">
+          <div class="fc-top">
+            <span class="mono" style="color:var(--muted);letter-spacing:.2em">mobile-agenda</span>
+            <span class="mono" style="color:var(--faint);font-size:9.5px">02 / 项目</span>
+          </div>
+          <div>
+            <h3>把一天摊成一条时间轴</h3>
+            <p>Android 时间轴日程 app，WebView + 原生壳，故意不用 Gradle。打开就是今天，不用点三次。</p>
+          </div>
+          <div class="fc-foot">
+            <span class="mono" style="color:var(--faint)">JavaScript · 自用</span>
+            <span class="go" aria-hidden="true">↗</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 关于 ============ -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec-title"><em>03</em> 一点自我介绍</h2>
+      </div>
+      <div class="about-grid">
+        <p class="about-statement" data-reveal>
+          我喜欢那些<span class="cn">安静、克制</span>、但在细节上<span class="cn">毫不妥协</span>的东西——一个好的界面，<em>一条走对的路</em>，或者一段刚好够用的代码。
+        </p>
+        <div class="about-body" data-reveal style="--d:1">
+          <p>白天写代码，晚上写字。多数时候在跟界面、地图和排版较劲，偶尔也会因为一条小小的动效高兴一整天。</p>
+          <p>如果你也在做类似的事，或者只是想说句你好——<br>随时欢迎。</p>
+          <a class="more" href="/about.html">更多关于我 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-big">写点<em>东西</em>。</p>
+        <p class="foot-note">这个博客没有评论、没有统计、没有广告。只有一些被认真写下来的字，和一处可以随便逛逛的地方。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>页面</h4>
+          <a href="/writing.html">写作</a>
+          <a href="/lab.html">实验室</a>
+          <a href="/about.html">关于</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <div class="foot-col">
+          <h4>别处</h4>
+          <a href="https://github.com/zzcym" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:" data-email style="display:none">邮箱</a>
+          <a href="/posts/hello-world.html">从这里开始 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">© <span data-year>2026</span> zzcym</span>
+      <span class="mono">手写 HTML · 0 个框架 · GitHub Pages</span>
+      <span class="mono">本地 <b data-clock style="color:var(--muted);font-weight:400">--:--:--</b> CST</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/orb.js"></script>
+
+</body>
+</html>

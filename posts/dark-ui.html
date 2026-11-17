@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深色的手感 — zzcym</title>
+<meta name="description" content="纯黑不是深色模式，深色也不是把颜色反过来。">
+<meta name="theme-color" content="#070709">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深色的手感">
+<meta property="og:description" content="纯黑不是深色模式，深色也不是把颜色反过来。">
+<!-- 文章元信息：只改这几行，首页列表 / 搜索 / RSS 会自动跟着变 -->
+<meta name="post:title" content="深色的手感">
+<meta name="post:date" content="2026-10-24">
+<meta name="post:tags" content="设计,界面">
+<meta name="post:excerpt" content="纯黑不是深色模式，深色也不是把颜色反过来。">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-post="dark-ui">
+
+<a class="skip" href="#main">跳到正文</a>
+<div class="progress" data-progress></div>
+
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="回到首页"><b data-site="name">zzcym</b><i>®</i></a>
+    <nav class="nav-links" aria-label="主导航">
+      <a class="nav-link" href="/writing.html">写作</a>
+      <a class="nav-link" href="/lab.html">实验室</a>
+      <a class="nav-link" href="/about.html">关于</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cmdk-key" type="button" data-open-palette aria-label="搜索与跳转">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.4 10.4 3 3"/></svg>
+        <span>⌘K</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="wrap">
+    <header class="article-head">
+      <div class="article-meta mono">
+        <time datetime="2026-10-24">2026.10.24</time>
+        <span class="sep" aria-hidden="true"></span>
+        <span data-reading>—</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span class="tag">设计</span><span class="tag">界面</span>
+      </div>
+      <h1 class="article-title">深色的手感</h1>
+      <p class="article-dek">纯黑不是深色模式，深色也不是把颜色反过来。</p>
+    </header>
+
+    <div class="article-body">
+      <div class="prose">
+        <p class="lead">纯黑不是答案。深色是一种环境，不是主题里的一个开关。</p>
+
+        <p>这几年做了不少深色的界面，慢慢攒下一些手感上的经验。它们没有什么理论依据，但每一条都是被眼睛纠正过的。</p>
+
+        <h2>一、纯黑会让人累</h2>
+        <p><code>#000000</code> 的页面上，白字像贴在黑洞边缘。瞳孔在极亮和极暗之间反复适应，读十分钟就发酸。</p>
+        <p>更舒服的做法是把背景抬高一格：<code>#070709</code> 到 <code>#0d0d10</code>，带一点点暖或一点点蓝；文字用 <code>#f1ece2</code> 这种不是纯白的米色。对比度从 21:1 掉到 15:1 左右，依然清晰，但眼睛不用一直绷着。</p>
+        <div class="callout"><span class="ic">i</span><div>这一页的背景是 <code>#070709</code>，正文是 <code>#c9c3b6</code>。它看起来“黑”，但没有一处是纯黑。</div></div>
+
+        <h2>二、用明度做层级，别用阴影</h2>
+        <p>深色界面上的阴影是隐形的：黑投在黑上，什么也看不见。层级只能靠“更亮一点”来表达。卡片比背景亮 3%，悬浮层再亮 3%，分隔线用 10% 的白。</p>
+        <p>一个简单的规则：<strong>越靠近用户的层，越亮。</strong></p>
+
+        <h2>三、一根 1px 的线，比一个 20px 的阴影更贵气</h2>
+        <p>我几乎不在深色界面上用大阴影。一圈 <code>rgba(255,255,255,.1)</code> 的发丝线，加上一点点内发光，就能把一块区域从背景里“托”出来，而且不脏。</p>
+        <p>阴影一多，界面会变成一堆漂浮的卡片；线一多，界面会变成一张图纸。图纸比漂浮物耐看。</p>
+
+        <h2>四、高饱和只给一处</h2>
+        <p>深色底上，饱和色的面积一旦超过 5%，整页就会开始吵。所以我只用一处朱红：一条正在阅读的下划线、一个点、一个数字。剩下的地方全部让给灰。</p>
+
+        <h2>五、字要更轻一点</h2>
+        <p>浅色字在深色底上会显得更粗，这叫光晕膨胀。同一个字重，在暗背景上看起来比在白底上重半档。所以正文不要用 500，500 在暗色里会显得糊；标题才用 600。</p>
+        <p>行高反而要更大一些。中文在深色上需要更多的垂直呼吸，1.9 是我常用的值。</p>
+
+        <h2>六、动效要慢</h2>
+        <p>深色让人安静。动效如果很快，会显得慌张。0.4 秒起步，缓动函数用 <code>cubic-bezier(.22, 1, .36, 1)</code>——出来的时候快一点，收尾长一点。</p>
+
+        <h2>七、深色是一种环境</h2>
+        <p>深色模式不是“把颜色反过来”。它更像在一个暗房间里布置灯光：你要决定光从哪来、照多远、哪里留黑。</p>
+        <p>留黑是最难的一步。大多数深色界面失败，不是因为不够黑，而是因为每个角落都想亮一点。</p>
+
+        <blockquote><p>好的深色界面，是让人忘记自己在看屏幕。</p></blockquote>
+      </div>
+      <aside class="toc" data-toc aria-label="目录"></aside>
+    </div>
+  </article>
+
+  <div class="wrap">
+    <nav class="pager" data-pager aria-label="上下篇"></nav>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-big">写点<em>东西</em>。</p>
+        <p class="foot-note">这个博客没有评论、没有统计、没有广告。只有一些被认真写下来的字，和一处可以随便逛逛的地方。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>页面</h4>
+          <a href="/writing.html">写作</a>
+          <a href="/lab.html">实验室</a>
+          <a href="/about.html">关于</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <div class="foot-col">
+          <h4>别处</h4>
+          <a href="https://github.com/zzcym" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:" data-email style="display:none">邮箱</a>
+          <a href="/posts/hello-world.html">从这里开始 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">© <span data-year>2026</span> zzcym</span>
+      <span class="mono">手写 HTML · 0 个框架 · GitHub Pages</span>
+      <span class="mono">本地 <b data-clock style="color:var(--muted);font-weight:400">--:--:--</b> CST</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/core.js"></script>
+</body>
+</html>
