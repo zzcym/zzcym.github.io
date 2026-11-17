@@ -69,10 +69,13 @@ function readPosts() {
 }
 
 function buildJson(posts) {
-  return JSON.stringify({ generated: new Date().toISOString(), posts }, null, 2) + '\n';
+  return JSON.stringify({ posts }, null, 2) + '\n';
 }
 
 function buildFeed(posts) {
+  const latestDate = posts.length
+    ? new Date(posts[0].date + 'T09:00:00+08:00').toUTCString()
+    : new Date(0).toUTCString();
   const items = posts
     .map(
       (p) => `    <item>
@@ -93,7 +96,7 @@ function buildFeed(posts) {
     <atom:link href="${SITE.url}/feed.xml" rel="self" type="application/rss+xml"/>
     <description>${esc(SITE.description)}</description>
     <language>zh-CN</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <lastBuildDate>${latestDate}</lastBuildDate>
 ${items}
   </channel>
 </rss>
