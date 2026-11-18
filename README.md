@@ -87,8 +87,12 @@ window.MathJax = {
 
 ## 用 DSH 写文章（可选）
 
-如果这个仓库装在装了 DeepSeek Harness 的机器上，有一个 `blog-post` skill：
+如果这个仓库装在装了 DeepSeek Harness 的机器上，有一个 [`blog-post`](https://github.com/zzcym/blog-post-skill) skill：
 把一段粗糙的笔记丢给它，它会纠错、补全、排版、画示意 SVG、配公式，最后生成 `posts/*.html` 并重建索引。
+
+```bash
+git clone https://github.com/zzcym/blog-post-skill.git ~/.dsh/skills/blog-post
+```
 
 ## 改成你自己的
 
