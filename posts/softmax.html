@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ↓↓↓ 这三行要改：标题 / 摘要 / 日期 / 标签 ↓↓↓ -->
+<title>softmax 到底在做什么：从一堆实数到一个概率分布 — zzcym</title>
+<meta name="description" content="线性层的输出是一组任意实数，要变成“属于哪一类”的概率，还差一步归一化。">
+<meta name="theme-color" content="#070709">
+<meta property="og:type" content="article">
+<meta property="og:title" content="softmax 到底在做什么：从一堆实数到一个概率分布">
+<meta property="og:description" content="线性层的输出是一组任意实数，要变成“属于哪一类”的概率，还差一步归一化。">
+<meta property="og:site_name" content="zzcym">
+<meta property="og:image" content="https://zzcym.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<!-- 文章元信息：首页列表 / 搜索 / RSS 全靠这几行，改完要跑 node tools/build-index.mjs -->
+<meta name="post:title" content="softmax 到底在做什么：从一堆实数到一个概率分布">
+<meta name="post:date" content="2026-11-19">
+<meta name="post:tags" content="机器学习">
+<meta name="post:excerpt" content="线性层的输出是一组任意实数，要变成“属于哪一类”的概率，还差一步归一化。">
+<!-- ↑↑↑ 到这里 ↑↑↑ -->
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-post="softmax">
+
+<a class="skip" href="#main">跳到正文</a>
+<div class="progress" data-progress></div>
+
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="回到首页"><b data-site="name">zzcym</b><i>®</i></a>
+    <nav class="nav-links" aria-label="主导航">
+      <a class="nav-link" href="/writing.html">写作</a>
+      <a class="nav-link" href="/lab.html">实验室</a>
+      <a class="nav-link" href="/about.html">关于</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cmdk-key" type="button" data-open-palette aria-label="搜索与跳转">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.4 10.4 3 3"/></svg>
+        <span>⌘K</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="wrap">
+    <header class="article-head">
+      <div class="article-meta mono">
+        <time datetime="2026-11-19">2026.11.19</time>
+        <span class="sep" aria-hidden="true"></span>
+        <span data-reading>—</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span class="tag">机器学习</span>
+      </div>
+      <h1 class="article-title">softmax 到底在做什么：从一堆实数到一个概率分布</h1>
+      <p class="article-dek">线性层的输出是一组任意实数，要变成“属于哪一类”的概率，还差一步归一化。</p>
+    </header>
+
+    <div class="article-body">
+      <div class="prose">
+<p class="lead">线性层的输出是一组任意实数，而“属于哪一类”需要一组加起来等于 1 的概率。中间差的那一步，就是 softmax。</p>
+
+<h2>先把问题说清楚</h2>
+<p>二分类的输出只要一个数就够：sigmoid 把它压到 0 和 1 之间，一边是“是”，另一边自然就是“不是”。多分类不一样——K 个类别彼此竞争，任何一个变大，剩下的就必须有人变小。</p>
+
+<figure>
+  <img src="/assets/img/posts/softmax/classify.svg" alt="左图两类样本被一条直线分开；右图三类样本被两条线切成三块">
+  <figcaption>二分类只要一条边界；多分类要把空间切成 K 块</figcaption>
+</figure>
+
+<p>但在这之前，模型其实只做了一件事：把输入映射成一个 K 维的实数向量，$z_k = w_k^\top x + b_k$。这些数可以很大、可以是负数、加起来也可能等于 17——它们叫 logits，只是分数，没有任何概率的含义。</p>
+
+<div class="callout"><span class="ic">i</span><div>说“softmax 解决多分类问题”其实不太准确。它做的是把分数变成概率分布；真正完成分类的是 argmax，而让模型学会这件事的是交叉熵损失。</div></div>
+
+<h2>概率要满足两个条件</h2>
+<p>把样本的类别看成一个随机事件的取值，模型给出的就是它的概率分布。一个合法的分布只有两条要求：</p>
+
+<p>$$ \sum_{k=1}^{K} p_k = 1, \qquad 0 \le p_k \le 1 $$</p>
+
+<p>这两条看着简单，但直接拿 logits 去凑是凑不出来的：要保证每一项是正的，指数一下；要让它们加起来等于 1，除掉总和。两件事分开做，就得到了 softmax。</p>
+
+<h2>softmax 的形式</h2>
+<p>$$ p_k = \frac{e^{z_k}}{\sum_{j=1}^{K} e^{z_j}} $$</p>
+
+<p>分子 $e^{z_k}$ 保证每一项都是正的（$e^{z} &gt; 0$），分母是所有项的和，除以它之后总和必然是 1。就这两步，没有别的魔法。</p>
+
+<p>写成向量形式更短：$\mathrm{softmax}(z) = e^{z} \big/ \sum_{j} e^{z_j}$，其中指数是逐元素算的。</p>
+
+<h2>三个容易被忽略的地方</h2>
+
+<h3>它会放大差距</h3>
+<p>三个类别的 logits 是 $2.0,\ 1.0,\ 0.1$。指数之后变成 $7.39,\ 2.72,\ 1.11$，归一化之后是 $0.66,\ 0.24,\ 0.10$。</p>
+<p>原来的 2.0 和 1.0 只差一倍，变成概率之后 0.66 和 0.24 差了将近三倍。指数把“稍微大一点”写成了“明显更可能”，模型看起来自信，来源就在这里。</p>
+
+<h3>它怕大数</h3>
+<p>$e^{1000}$ 在浮点数里直接是 inf，一除就变成 nan。实际实现都先减掉最大值：</p>
+
+<p>$$ p_k = \frac{e^{z_k - m}}{\sum_{j} e^{z_j - m}}, \qquad m = \max_j z_j $$</p>
+
+<p>分子分母同乘了 $e^{-m}$，数学上结果完全不变；数值上最大的那一项变成 $e^0 = 1$，再也不会溢出。</p>
+
+<pre data-lang="python"><code>def softmax(z):
+    z = z - z.max()      # 这一步不是可选的
+    e = np.exp(z)
+    return e / e.sum()</code></pre>
+
+<h3>它和 sigmoid 是一回事</h3>
+<p>取 $K = 2$，softmax 的第二项可以化简成 $\sigma(z_2 - z_1)$。二分类只是多分类的一个特例，只不过我们习惯只留一个输出，另一个用 $1 - p$ 表示。</p>
+
+<h2>那温度是什么</h2>
+<p>有时会看到 $\mathrm{softmax}(z / T)$ 这种写法。$T$ 叫温度：$T &gt; 1$ 时分布被压平，输出更“犹豫”；$T &lt; 1$ 时分布更尖，更像 argmax。</p>
+<p>它出现在知识蒸馏和一些采样策略里，本质上只是调整了“放大差距”的力度——同一个函数，换了一个尺度。</p>
+
+<hr>
+
+<p>所以回头看那句“softmax 解决多分类问题”：它解决的不是“怎么分类”，而是“怎么把一组分数变成一份说得通的可能性”。分类是后面的事。</p>
+      </div>
+      <aside class="toc" data-toc aria-label="目录"></aside>
+    </div>
+  </article>
+
+  <div class="wrap">
+    <nav class="pager" data-pager aria-label="上下篇"></nav>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-big">写点<em>东西</em>。</p>
+        <p class="foot-note">这个博客没有评论、没有统计、没有广告。只有一些被认真写下来的字，和一处可以随便逛逛的地方。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>页面</h4>
+          <a href="/writing.html">写作</a>
+          <a href="/lab.html">实验室</a>
+          <a href="/about.html">关于</a>
+          <a href="/feed.xml">RSS</a>
+        </div>
+        <div class="foot-col">
+          <h4>别处</h4>
+          <a href="https://github.com/zzcym" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:" data-email style="display:none">邮箱</a>
+          <a href="/posts/hello-world.html">从这里开始 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="mono">© <span data-year>2026</span> zzcym</span>
+      <span class="mono">手写 HTML · 0 个框架 · GitHub Pages</span>
+      <span class="mono">本地 <b data-clock style="color:var(--muted);font-weight:400">--:--:--</b> CST</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/core.js"></script>
+
+<!-- 只有文章里有公式（$…$ 或 $$…$$）时才保留下面两段，否则删掉 -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script defer src="/assets/js/mathjax/tex-svg.js"></script>
+
+</body>
+</html>

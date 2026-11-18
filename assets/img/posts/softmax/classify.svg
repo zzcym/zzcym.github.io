@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300" role="img" aria-label="左图：两类样本被一条直线分开；右图：三类样本被两条线切成三块">
+  <title>二分类与多分类的边界</title>
+
+  <!-- 左：二分类 -->
+  <g>
+    <line x1="60" y1="230" x2="330" y2="40" stroke="#f1ece2" stroke-opacity=".32" stroke-width="1.2" stroke-dasharray="5 6"/>
+    <g fill="#f1ece2" fill-opacity=".82">
+      <circle cx="100" cy="50" r="4"/>
+      <circle cx="140" cy="40" r="4"/>
+      <circle cx="180" cy="65" r="4"/>
+      <circle cx="120" cy="85" r="4"/>
+      <circle cx="160" cy="105" r="4"/>
+      <circle cx="200" cy="90" r="4"/>
+      <circle cx="230" cy="60" r="4"/>
+      <circle cx="90" cy="120" r="4"/>
+      <circle cx="150" cy="140" r="4"/>
+    </g>
+    <g fill="#ff5a36" fill-opacity=".95">
+      <circle cx="250" cy="200" r="4"/>
+      <circle cx="290" cy="180" r="4"/>
+      <circle cx="320" cy="210" r="4"/>
+      <circle cx="230" cy="175" r="4"/>
+      <circle cx="180" cy="200" r="4"/>
+      <circle cx="140" cy="190" r="4"/>
+      <circle cx="320" cy="150" r="4"/>
+    </g>
+    <text x="200" y="285" text-anchor="middle" fill="#8d8779" font-family="'Microsoft YaHei', system-ui, sans-serif" font-size="13" letter-spacing="1">二分类 · 一条边界</text>
+  </g>
+
+  <!-- 右：多分类 -->
+  <g>
+    <line x1="600" y1="215" x2="530" y2="30" stroke="#f1ece2" stroke-opacity=".32" stroke-width="1.2" stroke-dasharray="5 6"/>
+    <line x1="600" y1="215" x2="700" y2="30" stroke="#f1ece2" stroke-opacity=".32" stroke-width="1.2" stroke-dasharray="5 6"/>
+    <g fill="#f1ece2" fill-opacity=".82">
+      <circle cx="470" cy="150" r="4"/>
+      <circle cx="500" cy="110" r="4"/>
+      <circle cx="490" cy="180" r="4"/>
+      <circle cx="450" cy="100" r="4"/>
+    </g>
+    <g fill="#ff5a36" fill-opacity=".95">
+      <circle cx="575" cy="70" r="4"/>
+      <circle cx="605" cy="105" r="4"/>
+      <circle cx="625" cy="60" r="4"/>
+      <circle cx="590" cy="135" r="4"/>
+    </g>
+    <g fill="#ffcf8f" fill-opacity=".9">
+      <circle cx="700" cy="150" r="4"/>
+      <circle cx="730" cy="110" r="4"/>
+      <circle cx="710" cy="180" r="4"/>
+      <circle cx="750" cy="75" r="4"/>
+    </g>
+    <text x="600" y="285" text-anchor="middle" fill="#8d8779" font-family="'Microsoft YaHei', system-ui, sans-serif" font-size="13" letter-spacing="1">多分类 · 切成 K 块</text>
+  </g>
+
+  <!-- 中间分隔 -->
+  <line x1="400" y1="20" x2="400" y2="230" stroke="#f1ece2" stroke-opacity=".08" stroke-width="1"/>
+</svg>

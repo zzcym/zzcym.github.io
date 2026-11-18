@@ -60,8 +60,35 @@ node tools/build-index.mjs                       # 重新生成索引
 | `<div class="fx-shimmer">…</div>` | 渐变动字 |
 | `<img class="fx-reveal-img" …>` | 滚动揭示 |
 | `<div class="marquee"><div class="marquee-track"><span>…</span><span>…</span></div></div>` | 跑马灯 |
+| `$p_k$` / `<p>$$ … $$</p>` | 行内 / 独立公式（MathJax，见下） |
 
 在线看效果：<https://zzcym.github.io/lab.html>
+
+## 公式
+
+文章里可以直接写 LaTeX：行内 `$p_k$`，独立成行 `<p>$$ … $$</p>`。
+
+公式由 MathJax 渲染，资源在 `assets/js/mathjax/tex-svg.js`（自托管，不依赖 CDN）。
+**只有用了公式的文章**才需要在文件末尾保留这两段：
+
+```html
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script defer src="/assets/js/mathjax/tex-svg.js"></script>
+```
+
+新建文章时用 `node tools/new-post.mjs` 生成的模板里没有这两段，需要时从任意一篇带公式的文章里复制。
+`<` `>` `&` 在 HTML 里要写成 `&lt;` `&gt;` `&amp;`，MathJax 解析前浏览器会先还原。
+
+## 用 DSH 写文章（可选）
+
+如果这个仓库装在装了 DeepSeek Harness 的机器上，有一个 `blog-post` skill：
+把一段粗糙的笔记丢给它，它会纠错、补全、排版、画示意 SVG、配公式，最后生成 `posts/*.html` 并重建索引。
 
 ## 改成你自己的
 

@@ -1718,3 +1718,25 @@ html.no-anim .hero { min-height: auto; }
   .hero-name .ch { transform: none; opacity: 1; }
   .spotlight { display: none; }
 }
+
+/* ---------- 15. MathJax 修正 ----------
+   MathJax 的容器默认是 inline-block，但本站全局把 svg 设成了 block，
+   再加上部分浏览器下 mjx-container 会被当作块级，行内公式就会独占一行。
+   这里显式还原。 */
+mjx-container {
+  display: inline-block !important;
+  margin: 0 .1em !important;
+  font-size: 1.04em;
+  vertical-align: baseline;
+}
+mjx-container[display="true"] {
+  display: block !important;
+  margin: 1.25em 0 !important;
+  text-align: center;
+}
+mjx-container svg {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: baseline;
+}

@@ -1,6 +1,17 @@
 {
   "posts": [
     {
+      "slug": "softmax",
+      "title": "softmax 到底在做什么：从一堆实数到一个概率分布",
+      "date": "2026-11-19",
+      "tags": [
+        "机器学习"
+      ],
+      "excerpt": "线性层的输出是一组任意实数，要变成“属于哪一类”的概率，还差一步归一化。",
+      "reading": 3,
+      "file": "softmax.html"
+    },
+    {
       "slug": "hello-world",
       "title": "这个博客是怎么写出来的",
       "date": "2026-11-18",
